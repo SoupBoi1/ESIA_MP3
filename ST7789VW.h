@@ -1,6 +1,8 @@
 #ifndef HEADER_ST7789VW
 #define HEADER_ST7789VW
 
+//System Function Command Table 1
+#define NOP 0x00 // NOP
 #define RDDSDR 0x0F // Read display
 #define SLPIN 0x10 //Sleep in 
 #define SLPOUT 0x11 //Sleep out
@@ -40,6 +42,52 @@
 #define RDID1 0xDA //Read ID1 
 #define RDID2 0xDB //Read ID2 
 #define RDID3 0xDC //Read ID3 
+//System Function Command Table 2
+#define RAMCTRL 0xB0 //RAM Control
+#define RGBCTRL 0xB1 //RGB Control
+#define PORCTRL 0xB2 //Porch Control
+#define FRCTRL1 0xB3 //Frame Rate Control 1
+#define PARCTRL 0xB5 //Partial Control
+#define GCTRL 0xB7 //Gate Control
+#define GTADJ 0xB8 //Gate on timing adjustment
+#define DGMEN 0xBA //Digital Gamma Enable
+#define VCOMS 0xBB //VCOM Setting
+#define POWSAVE 0xBC //Power saving mode
+#define DLPOFFSAVE 0xBD //Display off Power save
+#define LCMCTRL 0xC0 //LCM Control
+#define IDSET 0xC1 //ID Setting
+#define VDVVRHEN 0xC2 //VDV and VRH Command Enable
+#define VRHS 0xC3 //VRH Set
+#define VDVSET 0xC4 //VDV Setting
+#define VCMOFSET 0xC5 //VCOM Offset Set
+#define FRCTR2 0xC6 //FR Control 2
+#define CABCCTRL 0xC7 //CABC Control
+#define REGSEL1 0xC8 //Register value section 1
+#define REGSEL2 0xCA //Register value section 2
+#define PWMFRSEL 0xCC //PWM Frequency Selection
+#define PWCTRL1 0xD0 //Power Control 1
+#define VAPVANEN 0xD2 //Enable VAP/VAN signal output
+
+//idk waht going to with CMD2EN TODO 
+//TODO findout what going on with CMD2EN 
+#define CMD2EN 0xDF//Command 2 Enable
+#define CMD2EN_p1 0x5A // CMD2EN paraemter 1
+#define CMD2EN_p2 0x69 // CMD2EN paraemter 2 
+#define CMD2EN_p3 0x02 // CMD2EN paraemter 3
+
+#define PVGAMCTRL  0xE0 //Positive Voltage Gamma Control
+#define NVGAMCTRL 0xE1 //Negative Voltage Gamma Control
+#define DGMLUTR 0xE2 //Digital Gamma Look-up Table for Red
+#define DGMLUTB 0xE3 //Digital Gamma Look-up Table for Blue
+#define GATECTRL 0xE4 //Gate Control
+#define SPI2EN 0xE7 //SPI2 Enable
+#define PWCTRL2 0xE8 //Power Control 2 
+#define EQCTRL 0xE9 //Equalize Time Control
+#define PROMCTRL 0xEC //Program counter
+#define PROMEN 0xFA //Program Mode Enable
+#define NVMSET 0xFC //NVM setting
+#define PROMACT 0xFE //Program Action
+
 
 
 
