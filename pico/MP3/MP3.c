@@ -1,53 +1,49 @@
-/**
- * Copyright (c) 2020 Raspberry Pi (Trading) Ltd.
- *
- * SPDX-License-Identifier: BSD-3-Clause
- */
-
+#include <stdio.h>
 #include "pico/stdlib.h"
-
-// Pico W devices use a GPIO on the WIFI chip for the LED,
-// so when building for Pico W, CYW43_WL_GPIO_LED_PIN will be defined
-#ifdef CYW43_WL_GPIO_LED_PIN
+#include "hardware/spi.h"
+#include "hardware/i2c.h"
+#include "hardware/dma.h"
+#include "hardware/pio.h"
+#include "hardware/interp.h"
+#include "hardware/timer.h"
+#include "hardware/watchdog.h"
+#include "hardware/clocks.h"
 #include "pico/cyw43_arch.h"
-#endif
+#include "hardware/uart.h"
+#include "pico/stdlib.h"
+#include "hardware/irq.h"  // interrupts
+#include "hardware/pwm.h"  // pwm 
+#include "hardware/sync.h" // wait for interrupt 
 
-#ifndef LED_DELAY_MS
-#define LED_DELAY_MS 250
-#endif
+// SPI Defines
+// We are going to use SPI 0, and allocate it to the following GPIO pins
+// Pins can be changed, see the GPIO function select table in the datasheet for information on GPIO assignments
+#define SPI_PORT spi0
+#define PIN_CS   17
+#define PIN_SCK  18
+#define PIN_MOSI 19
+#define PIN_DC 0
+#define PIN_RST 1
+#define BL 2
 
-// Perform initialisation
-int pico_led_init(void) {
-#if defined(PICO_DEFAULT_LED_PIN)
-    // A device like Pico that uses a GPIO for the LED will define PICO_DEFAULT_LED_PIN
-    // so we can use normal GPIO functionality to turn the led on and off
-    gpio_init(PICO_DEFAULT_LED_PIN);
-    gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
-    return PICO_OK;
-#elif defined(CYW43_WL_GPIO_LED_PIN)
-    // For Pico W devices we need to initialise the driver etc
-    return cyw43_arch_init();
-#endif
-}
+#define PIN_DC 0
+#define PIN_RST 1
+#define BL 2
 
-// Turn the led on or off
-void pico_set_led(bool led_on) {
-#if defined(PICO_DEFAULT_LED_PIN)
-    // Just set the GPIO on or off
-    gpio_put(PICO_DEFAULT_LED_PIN, led_on);
-#elif defined(CYW43_WL_GPIO_LED_PIN)
-    // Ask the wifi "driver" to set the GPIO on or off
-    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led_on);
-#endif
-}
+#define AUDIO_PIN 28  // you can change this to whatever you like
 
-int main() {
-    int rc = pico_led_init();
-    hard_assert(rc == PICO_OK);
-    while (true) {
-        pico_set_led(true);
-        sleep_ms(LED_DELAY_MS);
-        pico_set_led(false);
-        sleep_ms(LED_DELAY_MS);
-    }
+// SPI Defines
+// We are going to use SPI 0, and allocate it to the following GPIO pins
+// Pins can be changed, see the GPIO function select table in the datasheet for information on GPIO assignments
+#define SPI_PORT spi1
+#define SD_CS   13
+#define SD_SCK  14
+#define SD_MOSI 15
+#define SD_MISO 12
+
+
+
+
+int main(){
+
 }

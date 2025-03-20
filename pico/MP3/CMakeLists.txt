@@ -67,6 +67,7 @@ target_link_libraries(MP3
         hardware_watchdog
         hardware_clocks
         pico_cyw43_arch_lwip_threadsafe_background
+        hardware_pwm
         )
 
 pico_add_extra_outputs(MP3)
